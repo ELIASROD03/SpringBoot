@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Mostrar Personas</title>
+</head>
+<body>
+    <h2>Listado de Personas</h2>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Edad</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Itera sobre la lista de personas y crea una fila por cada persona -->
+            <!-- Asumo que tienes el método getPersonas() en PersonaController para obtener la lista -->
+            <!-- y que cada Persona tiene los métodos getId(), getNombre(), getApellido(), getEdad() -->
+            <!-- ajusta según tu implementación -->
+            <c:forEach items="${personas}" var="persona">
+                <tr>
+                    <td>${persona.id}</td>
+                    <td>${persona.nombre}</td>
+                    <td>${persona.apellido}</td>
+                    <td>${persona.edad}</td>
+                </tr>
+            </c:forEach>
+        </tbody>
+    </table>
+    <a href="/ingresar">Volver al Formulario</a>
+</body>
+</html>
