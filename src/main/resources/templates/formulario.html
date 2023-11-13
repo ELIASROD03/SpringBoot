@@ -22,6 +22,10 @@
     <hr>
 
     <a href="/mostrar">Ver Tabla</a>
+    
+     <script>
+        
+    </script>
 
     <script>
         function ingresarPersona() {
@@ -29,13 +33,13 @@
             var apellido = document.getElementById('apellido').value;
             var edad = document.getElementById('edad').value;
 
-            var tabla = localStorage.getItem('personas');
+            var tabla = sessionStorage.getItem('personas');
             var personas = tabla ? JSON.parse(tabla) : [];
 
             var nuevaPersona = { nombre: nombre, apellido: apellido, edad: edad };
             personas.push(nuevaPersona);
 
-            localStorage.setItem('personas', JSON.stringify(personas));
+            sessionStorage.setItem('personas', JSON.stringify(personas));
 
             // Limpiar el formulario
             document.getElementById('personaForm').reset();

@@ -24,7 +24,7 @@
 
     <script>
         var tablaPersonas = document.getElementById('tablaPersonas');
-        var tabla = localStorage.getItem('personas');
+        var tabla = sessionStorage.getItem('personas');
         var personas = tabla ? JSON.parse(tabla) : [];
 
         personas.forEach(function(persona) {

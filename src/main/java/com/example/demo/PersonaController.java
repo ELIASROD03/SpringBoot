@@ -17,6 +17,7 @@ public class PersonaController {
 
     @GetMapping("/ingresar")
     public String mostrarFormulario() {
+
         return "formulario";
     }
 
