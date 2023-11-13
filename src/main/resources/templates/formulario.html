@@ -2,11 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Ingresar y Mostrar Personas</title>
+    <title>Ingresar Personas</title>
 </head>
 <body>
-
-    <!-- Formulario para ingresar datos -->
     <h2>Formulario para Ingresar Persona</h2>
     <form id="personaForm">
         <label for="nombre">Nombre:</label>
@@ -23,52 +21,25 @@
 
     <hr>
 
-    <!-- Tabla para mostrar datos -->
-    <h2>Listado de Personas</h2>
-    <table border="1" id="tablaPersonas">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Nombre</th>
-                <th>Apellido</th>
-                <th>Edad</th>
-            </tr>
-        </thead>
-        <tbody>
-            <!-- Aquí se agregarán dinámicamente las filas con los datos ingresados -->
-        </tbody>
-    </table>
+    <a href="/mostrar">Ver Tabla</a>
 
     <script>
         function ingresarPersona() {
-            // Obtener datos del formulario
             var nombre = document.getElementById('nombre').value;
             var apellido = document.getElementById('apellido').value;
             var edad = document.getElementById('edad').value;
 
-            // Crear una nueva fila en la tabla
-            var tabla = document.getElementById('tablaPersonas');
-            var newRow = tabla.insertRow(tabla.rows.length);
+            var tabla = localStorage.getItem('personas');
+            var personas = tabla ? JSON.parse(tabla) : [];
 
-            // Agregar celdas con los datos ingresados
-            var cellId = newRow.insertCell(0);
-            var cellNombre = newRow.insertCell(1);
-            var cellApellido = newRow.insertCell(2);
-            var cellEdad = newRow.insertCell(3);
+            var nuevaPersona = { nombre: nombre, apellido: apellido, edad: edad };
+            personas.push(nuevaPersona);
 
-            // Generar un ID único (puedes usar una lógica más robusta en tu aplicación)
-            var id = Date.now();
-
-            // Asignar valores a las celdas
-            cellId.innerHTML = id;
-            cellNombre.innerHTML = nombre;
-            cellApellido.innerHTML = apellido;
-            cellEdad.innerHTML = edad;
+            localStorage.setItem('personas', JSON.stringify(personas));
 
             // Limpiar el formulario
             document.getElementById('personaForm').reset();
         }
     </script>
-
 </body>
 </html>

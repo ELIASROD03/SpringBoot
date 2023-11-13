@@ -15,21 +15,33 @@
                 <th>Edad</th>
             </tr>
         </thead>
-        <tbody>
-            <!-- Itera sobre la lista de personas y crea una fila por cada persona -->
-            <!-- Asumo que tienes el método getPersonas() en PersonaController para obtener la lista -->
-            <!-- y que cada Persona tiene los métodos getId(), getNombre(), getApellido(), getEdad() -->
-            <!-- ajusta según tu implementación -->
-            <c:forEach items="${personas}" var="persona">
-                <tr>
-                    <td>${persona.id}</td>
-                    <td>${persona.nombre}</td>
-                    <td>${persona.apellido}</td>
-                    <td>${persona.edad}</td>
-                </tr>
-            </c:forEach>
+        <tbody id="tablaPersonas">
+            <!-- Aquí se agregarán dinámicamente las filas con los datos ingresados -->
         </tbody>
     </table>
+    
     <a href="/ingresar">Volver al Formulario</a>
+
+    <script>
+        var tablaPersonas = document.getElementById('tablaPersonas');
+        var tabla = localStorage.getItem('personas');
+        var personas = tabla ? JSON.parse(tabla) : [];
+
+        personas.forEach(function(persona) {
+            var newRow = tablaPersonas.insertRow(tablaPersonas.rows.length);
+            var cellId = newRow.insertCell(0);
+            var cellNombre = newRow.insertCell(1);
+            var cellApellido = newRow.insertCell(2);
+            var cellEdad = newRow.insertCell(3);
+
+            // Generar un ID único (puedes usar una lógica más robusta en tu aplicación)
+            var id = Date.now();
+
+            cellId.innerHTML = id;
+            cellNombre.innerHTML = persona.nombre;
+            cellApellido.innerHTML = persona.apellido;
+            cellEdad.innerHTML = persona.edad;
+        });
+    </script>
 </body>
 </html>
